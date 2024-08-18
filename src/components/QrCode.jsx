@@ -15,7 +15,9 @@ const QrCode = () => {
         alert("Please enter a valid size.");
         return;
       }
-      const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(qrdata)}`;
+      const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(
+        qrdata
+      )}`;
       setImg(url);
     } catch (error) {
       console.error("Error generating QR code:", error);
@@ -24,7 +26,7 @@ const QrCode = () => {
     }
   }
 
-  function downloadQrCode() {
+  async function downloadQrCode() {
     if (!img) return; // Avoid downloading if no image is available
     fetch(img)
       .then((response) => response.blob())
@@ -73,10 +75,7 @@ const QrCode = () => {
         >
           Generate QR Code
         </button>
-        <button
-          className="download-button"
-          onClick={downloadQrCode}
-        >
+        <button className="download-button" onClick={downloadQrCode}>
           Download QR Code
         </button>
       </div>
